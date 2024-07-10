@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type UserSetting {
-  userId: Int!
+  userId: Int
   receiveNotifications: Boolean!
   receiveEmails: Boolean!
 }
@@ -17,8 +17,21 @@ type User {
 
 type Query {
   getUserById(id: Int!): User
+  getUsers: [User!]!
 }
 
 type Mutation {
-  createUser(username: String!, displayName: String): User!
+  createUser(createUserData: createUserDto!): User!
+  createUserSetting(createUserSettingData: CreateUserSettingDto!): UserSetting!
+}
+
+input createUserDto {
+  username: String!
+  displayName: String
+}
+
+input CreateUserSettingDto {
+  userId: Int!
+  receiveNotifications: Boolean = false
+  receiveEmails: Boolean = false
 }

@@ -5,14 +5,14 @@ import { Column, PrimaryColumn, Entity } from 'typeorm';
 @ObjectType()
 export class UserSetting {
   @PrimaryColumn()
-  @Field((type) => Int)
+  @Field((type) => Int, { nullable: true })
   userId: number;
 
-  @Column()
+  @Column({ default: false })
   @Field({ defaultValue: false })
   receiveNotifications: boolean;
 
-  @Column()
+  @Column({ default: false })
   @Field({ defaultValue: false })
   receiveEmails: boolean;
 }
